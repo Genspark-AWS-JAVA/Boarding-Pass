@@ -4,6 +4,6 @@ public class User {
     String name;
     String email;
     String phoneNumber;
-    String Gender;
-    Integer Age;
+    String gender;
+    Integer age;
 }
