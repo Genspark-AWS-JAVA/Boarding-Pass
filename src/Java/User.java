@@ -1,9 +1,9 @@
 package Java;
 
 public class User {
-    String Name;
-    String Email;
-    String PhoneNumber;
-    String Gender;
-    Integer Age;
+    String name;
+    String email;
+    String phoneNumber;
+    String gender;
+    Integer age;
 }
