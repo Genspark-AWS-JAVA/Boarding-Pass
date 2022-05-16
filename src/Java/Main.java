@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
         Scanner in = new Scanner(System.in);
 
         User user = new User();
@@ -16,6 +15,5 @@ public class Main {
         SaveData saveData = new SaveData(user, boardingPass);
         saveData.saveFile();
         saveData.writeTicket();
-
     }
 }
