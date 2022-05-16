@@ -3,7 +3,7 @@ package Java;
 public class User {
     String name;
     String email;
-    Integer phoneNumber;
+    String phoneNumber;
     String Gender;
     Integer Age;
 }
