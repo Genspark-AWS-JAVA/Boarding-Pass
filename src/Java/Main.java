@@ -12,7 +12,9 @@ public class Main {
         BoardingPass boardingPass = new BoardingPass();
         boardingPass.populateDataFromConsole(in);
 
-        SaveData saveData = new SaveData(user, boardingPass);
+        Price price = new Price(user, boardingPass);
+
+        SaveData saveData = new SaveData(price, user, boardingPass);
         saveData.saveFile();
         saveData.writeTicket();
     }
