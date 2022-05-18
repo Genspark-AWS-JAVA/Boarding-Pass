@@ -31,7 +31,7 @@ public class SaveData {
             throw new RuntimeException(e);
         }
         CSVWriter csvWriter = new CSVWriter(fileWriter);
-        String[] fields = {Integer.toString(boardingPass.boardingPassNumber), boardingPass.date.toString(),
+        String[] fields = {boardingPass.boardingPassNumber.toString(), boardingPass.date.toString(),
                 boardingPass.origin, boardingPass.destination, boardingPass.ETA.toString(),
                 boardingPass.departureTime.toString(), user.name, user.email,
                 user.phoneNumber, user.gender, user.age.toString()};
