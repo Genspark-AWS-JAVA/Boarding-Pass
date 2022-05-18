@@ -28,13 +28,13 @@ class SaveDataTest {
         user.phoneNumber = "(555) 555 0123";
         user.email = "passenger@example.com";
         user.age = 30;
-        boardingPass = new BoardingPass();
-        boardingPass.boardingPassNumber = 100;
-        boardingPass.origin = "12 High St. Indianapolis, Indiana, USA";
-        boardingPass.destination = "123 Main St. Columbus, Ohio, USA";
-        boardingPass.date = Date.valueOf("2022-01-01");
-        boardingPass.departureTime = Date.valueOf("2022-01-02");
-        boardingPass.ETA = Date.valueOf("2022-01-03");
+//        boardingPass = new BoardingPass();
+//        boardingPass.boardingPassNumber = 100;
+//        boardingPass.origin = "12 High St. Indianapolis, Indiana, USA";
+//        boardingPass.destination = "123 Main St. Columbus, Ohio, USA";
+//        boardingPass.date = Date.valueOf("2022-01-01");
+//        boardingPass.departureTime = Date.valueOf("2022-01-02");
+//        boardingPass.ETA = Date.valueOf("2022-01-03");
 
         saveData = new SaveData(user, boardingPass);
         saveData.dataFilePath = "test/_test_data.csv";
