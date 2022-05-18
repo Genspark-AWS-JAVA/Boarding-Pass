@@ -1,18 +1,23 @@
 package Java;
 
 public class Price {
-    int age = 21;
-    String gender = "male";
+    int age;
+    String gender;
     float basePrice = 300f;
+
     public Price(User user, BoardingPass boardingPass) {
+        this.age = user.age;
+        this.gender = user.gender;
     }
-    public float getPrice(){
-        if (gender .equals("female")){
-            basePrice-=basePrice * 0.25;
+
+    public float getPrice() {
+        float actualPrice = basePrice;
+        if (gender.equals("female")) {
+            actualPrice = basePrice * (1 - 0.25f);
         }
-        if( age <= 12 ){
-            basePrice-=basePrice * 0.50;
+        if (age <= 12) {
+            return actualPrice * 0.5f;
         }
-        return basePrice;
+        return actualPrice;
     }
 }
