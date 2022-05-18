@@ -14,11 +14,10 @@ public class User {
     public void populateUserDataFromConsole(Scanner in) {
         System.out.println("What is your name?");
         this.name = in.nextLine();
-        Scanner input = new Scanner(System.in);
             Matcher matcher;
         do {
             System.out.println("enter your email:");
-            String userEmail = input.next();
+            String userEmail = in.nextLine();
             Pattern pattern = Pattern.compile("\\S+?@\\S+?\\.com");
             matcher = pattern.matcher(userEmail);
             if (matcher.matches()) {
@@ -28,7 +27,6 @@ public class User {
                 System.out.println("your email should looks like this sample jimi.hendrix@gmail.com");
             }
         } while(!matcher.matches());
-            input.close();
 
         System.out.println("What is your phone number?");
         this.phoneNumber = in.nextLine();
@@ -39,6 +37,7 @@ public class User {
         System.out.println(this.gender);
 
         System.out.println("What is your age?");
-        this.age = in.nextInt();
+//        this.age = in.nextInt();
+        this.age = Integer.parseInt(in.nextLine().strip());
     }
 }
