@@ -33,7 +33,7 @@ public class User {
         do {
             System.out.println("Male or Female.");
             this.gender = in.nextLine().toLowerCase().strip();
-        } while (Objects.equals(this.gender, "male") || Objects.equals(this.gender, "female"));
+        } while (this.gender =="male" || this.gender == "female");
         System.out.println(this.gender);
 
         System.out.println("What is your age?");
