@@ -16,9 +16,10 @@ public class User {
         System.out.println("What is your name?");
         this.name = in.nextLine();
         Matcher matcher;
+        String userEmail;
         do {
             System.out.println("enter your email:");
-            String userEmail = in.nextLine();
+            userEmail = in.nextLine();
             Pattern pattern = Pattern.compile("\\S+?@\\S+?\\.com");
             matcher = pattern.matcher(userEmail);
             if (matcher.matches()) {
@@ -26,8 +27,7 @@ public class User {
             } else {
                 System.out.println("your email should looks like this sample jimi.hendrix@gmail.com");
             }
-        } while(!matcher.matches());
-            String userEmail;
+        } while (!matcher.matches());
             this.email = userEmail;
       
         System.out.println("What is your phone number?");
