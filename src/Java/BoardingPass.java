@@ -31,7 +31,6 @@ public class BoardingPass {
             minute = preMinute + "";
         }
         this.departureTime = hour + ":" + minute;
-        System.out.println(this.departureTime);
         int newHour = rand.nextInt(12) + 1;
         int preNewMinute = rand.nextInt(60);
         if (preNewMinute < 10) {
@@ -40,6 +39,5 @@ public class BoardingPass {
             newMinute = preNewMinute + "";
         }
         this.ETA = newHour + ":" + newMinute;
-        System.out.println(this.ETA);
     }
 }
