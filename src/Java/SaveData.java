@@ -2,10 +2,11 @@ package Java;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvValidationException;
+import com.opencsv.exceptions.CsvException;
 
 import java.io.*;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
 
 public class SaveData {
@@ -67,8 +68,10 @@ public class SaveData {
         CSVReader csvReader = new CSVReader(fileReader);
         try {
             fileWriter.write("Ticket:\n");
-            String[] headers = csvReader.readNext();
-            String[] line = csvReader.readNext();
+            List<String[]> csvLines = csvReader.readAll();
+            String[] headers = csvLines.get(0);
+            String[] line = csvLines.get(csvLines.size() - 1);
+
             for (int i = 0; i < headers.length; i++) {
                 if (headers[i].equals("Price")) {
                     fileWriter.write(String.format("%s:\t%s%n", headers[i], NumberFormat.
@@ -79,7 +82,7 @@ public class SaveData {
                 }
             }
 
-        } catch (IOException | CsvValidationException e) {
+        } catch (IOException | CsvException e) {
             throw new RuntimeException(e);
         }
         try {
