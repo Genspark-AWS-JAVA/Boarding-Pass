@@ -1,4 +1,4 @@
-package Java;
+
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -27,7 +27,8 @@ public class User {
                 System.out.println("your email should looks like this sample jimi.hendrix@gmail.com");
             }
         } while(!matcher.matches());
-
+            String userEmail;
+            this.email = userEmail;
         System.out.println("What is your phone number?");
         this.phoneNumber = in.nextLine();
         do {
