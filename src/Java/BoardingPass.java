@@ -19,7 +19,7 @@ public class BoardingPass {
         this.origin = in.nextLine();
         System.out.println("What is your destination");
         this.destination = in.nextLine();
-        System.out.println("What date are you leaving (mm/dd/yyyy");
+        System.out.println("What date are you leaving (mm/dd/yyyy)");
         this.date = in.nextLine();
         this.boardingPassNumber = UUID.randomUUID();
         Random rand = new Random();

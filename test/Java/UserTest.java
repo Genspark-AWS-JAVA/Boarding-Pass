@@ -22,6 +22,7 @@ class UserTest {
         Scanner in = new Scanner(System.in);
         user.populateUserDataFromConsole(in);
         assertEquals("Michael", user.name);
+        assertEquals("l@g.com", user.email);
 
         input = String.format("M%nl@g.com%n(555) 555 0123%nmale%n33%n");
         inStream = new ByteArrayInputStream(input.getBytes());
@@ -29,6 +30,15 @@ class UserTest {
         in = new Scanner(System.in);
         user.populateUserDataFromConsole(in);
         assertEquals("M", user.name);
+
+        input = String.format("M%nl@g.com%n(555) 555 0123%nmale%n33%n");
+        inStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inStream);
+        in = new Scanner(System.in);
+        user.populateUserDataFromConsole(in);
+        assertEquals("M", user.name);
+
+
 
         try {
             inStream.close();
