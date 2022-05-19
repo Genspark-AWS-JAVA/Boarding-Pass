@@ -1,4 +1,4 @@
-package Java;
+
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -26,8 +26,10 @@ public class User {
             } else {
                 System.out.println("your email should looks like this sample jimi.hendrix@gmail.com");
             }
-        } while (!matcher.matches());
-
+        } while(!matcher.matches());
+            String userEmail;
+            this.email = userEmail;
+      
         System.out.println("What is your phone number?");
         this.phoneNumber = in.nextLine();
         do {
