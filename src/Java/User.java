@@ -1,4 +1,4 @@
-
+package Java;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -23,7 +23,6 @@ public class User {
             Pattern pattern = Pattern.compile("\\S+?@\\S+?\\.com");
             matcher = pattern.matcher(userEmail);
             if (matcher.matches()) {
-                System.out.println("Matches");
             } else {
                 System.out.println("your email should looks like this sample jimi.hendrix@gmail.com");
             }
