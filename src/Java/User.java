@@ -1,8 +1,9 @@
 
 
+import java.util.Objects;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class User {
     String name;
@@ -14,7 +15,7 @@ public class User {
     public void populateUserDataFromConsole(Scanner in) {
         System.out.println("What is your name?");
         this.name = in.nextLine();
-            Matcher matcher;
+        Matcher matcher;
         do {
             System.out.println("enter your email:");
             String userEmail = in.nextLine();
@@ -22,19 +23,19 @@ public class User {
             matcher = pattern.matcher(userEmail);
             if (matcher.matches()) {
                 System.out.println("Matches");
-            }
-            else {
+            } else {
                 System.out.println("your email should looks like this sample jimi.hendrix@gmail.com");
             }
         } while(!matcher.matches());
             String userEmail;
             this.email = userEmail;
+      
         System.out.println("What is your phone number?");
         this.phoneNumber = in.nextLine();
         do {
             System.out.println("Male or Female.");
             this.gender = in.nextLine().toLowerCase().strip();
-        } while (this.gender == "male" || this.gender == "female");
+        } while (this.gender =="male" || this.gender == "female");
         System.out.println(this.gender);
 
         System.out.println("What is your age?");

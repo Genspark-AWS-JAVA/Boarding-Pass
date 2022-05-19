@@ -5,18 +5,22 @@ import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.*;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class SaveData {
     User user;
     BoardingPass boardingPass;
     String dataFilePath;
     String ticketFilePath;
+    float price;
 
-    public SaveData(User user, BoardingPass boardingPass) {
+    public SaveData(Price price, User user, BoardingPass boardingPass) {
         this.user = user;
         this.boardingPass = boardingPass;
         dataFilePath = "data.csv";
         ticketFilePath = "ticket.txt";
+        this.price = price.getPrice();
     }
 
     public void saveFile() {
@@ -31,10 +35,10 @@ public class SaveData {
             throw new RuntimeException(e);
         }
         CSVWriter csvWriter = new CSVWriter(fileWriter);
-        String[] fields = {boardingPass.boardingPassNumber.toString(), boardingPass.date.toString(),
-                boardingPass.origin, boardingPass.destination, boardingPass.ETA.toString(),
-                boardingPass.departureTime.toString(), user.name, user.email,
-                user.phoneNumber, user.gender, user.age.toString()};
+        String[] fields = {boardingPass.boardingPassNumber.toString(), boardingPass.date,
+                boardingPass.origin, boardingPass.destination, boardingPass.ETA,
+                boardingPass.departureTime, user.name, user.email,
+                user.phoneNumber, user.gender, user.age.toString(), Float.toString(this.price)};
         csvWriter.writeNext(fields);
         try {
             csvWriter.close();
@@ -66,7 +70,13 @@ public class SaveData {
             String[] headers = csvReader.readNext();
             String[] line = csvReader.readNext();
             for (int i = 0; i < headers.length; i++) {
-                fileWriter.write(String.format("%s:\t%s%n", headers[i], line[i]));
+                if (headers[i].equals("Price")) {
+                    fileWriter.write(String.format("%s:\t%s%n", headers[i], NumberFormat.
+                            getCurrencyInstance(new Locale("en", "US")).
+                            format(Float.parseFloat(line[i]))));
+                } else {
+                    fileWriter.write(String.format("%s:\t%s%n", headers[i], line[i]));
+                }
             }
 
         } catch (IOException | CsvValidationException e) {
@@ -97,7 +107,7 @@ public class SaveData {
         }
         CSVWriter csvWriter = new CSVWriter(fileWriter);
         String[] fields = {"Boarding Pass Number", "Date", "Origin", "Destination", "ETA", "DepartureTime",
-                "Name", "Email", "PhoneNumber", "Gender", "Age"};
+                "Name", "Email", "PhoneNumber", "Gender", "Age", "Price"};
         csvWriter.writeNext(fields);
         try {
             csvWriter.close();

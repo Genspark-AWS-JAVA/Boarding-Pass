@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Date;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +19,7 @@ class SaveDataTest {
     User user;
     BoardingPass boardingPass;
     SaveData saveData;
+    Price price;
 
     @BeforeEach
     void setUp() {
@@ -29,14 +30,16 @@ class SaveDataTest {
         user.email = "passenger@example.com";
         user.age = 30;
         boardingPass = new BoardingPass();
-        boardingPass.boardingPassNumber = 100;
+        boardingPass.boardingPassNumber = UUID.randomUUID();
         boardingPass.origin = "12 High St. Indianapolis, Indiana, USA";
         boardingPass.destination = "123 Main St. Columbus, Ohio, USA";
-        boardingPass.date = Date.valueOf("2022-01-01");
-        boardingPass.departureTime = Date.valueOf("2022-01-02");
-        boardingPass.ETA = Date.valueOf("2022-01-03");
+        boardingPass.date = "2022-01-01";
+        boardingPass.departureTime = "2022-01-02";
+        boardingPass.ETA = "2022-01-03";
 
-        saveData = new SaveData(user, boardingPass);
+        this.price = new Price(user, boardingPass);
+
+        saveData = new SaveData(price, user, boardingPass);
         saveData.dataFilePath = "test/_test_data.csv";
         saveData.ticketFilePath = "test/_test_ticket.txt";
     }
@@ -57,7 +60,7 @@ class SaveDataTest {
             String[] headers = csvReader.readNext();
             assertEquals("Date", headers[1]);
             String[] line = csvReader.readNext();
-            assertEquals("100", line[0]);
+            assertEquals("2022-01-03", line[4]);
 
         } catch (IOException | CsvValidationException e) {
             throw new RuntimeException(e);
@@ -89,11 +92,11 @@ class SaveDataTest {
                 System.out.println("Was not able to delete test CSV file.");
             }
         }
-//        File testTicketFile = new File(saveData.ticketFilePath);
-//        if (testTicketFile.exists()){
-//            if(!testTicketFile.delete()){
-//                System.out.println("Was not able to delete test Ticket file.");
-//            }
-//        }
+        File testTicketFile = new File(saveData.ticketFilePath);
+        if (testTicketFile.exists()){
+            if(!testTicketFile.delete()){
+                System.out.println("Was not able to delete test Ticket file.");
+            }
+        }
     }
 }
