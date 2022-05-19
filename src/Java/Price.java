@@ -18,6 +18,9 @@ public class Price {
         if (age <= 12) {
             return actualPrice * 0.5f;
         }
+        if (age >= 60) {
+            actualPrice -= actualPrice * 0.6f;
+
         return actualPrice;
     }
 }
