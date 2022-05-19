@@ -1,4 +1,4 @@
-package Java;
+
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -29,7 +29,7 @@ public class User {
             }
         } while (!matcher.matches());
             this.email = userEmail;
-
+      
         System.out.println("What is your phone number?");
         this.phoneNumber = in.nextLine();
         do {
