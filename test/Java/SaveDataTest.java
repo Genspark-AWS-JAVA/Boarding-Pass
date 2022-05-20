@@ -46,8 +46,7 @@ class SaveDataTest {
 
     @Test
     void saveFile() {
-        saveData.saveFile();
-        saveData.saveFile();
+        saveData.deleteFile(saveData.dataFilePath);
         saveData.saveFile();
         FileReader fileReader;
         try {
@@ -56,8 +55,9 @@ class SaveDataTest {
             throw new RuntimeException(e);
         }
         CSVReader csvReader = new CSVReader(fileReader);
+        String[] headers;
         try {
-            String[] headers = csvReader.readNext();
+            headers = csvReader.readNext();
             assertEquals("Date", headers[1]);
             String[] line = csvReader.readNext();
             assertEquals("2022-01-03", line[4]);
@@ -65,6 +65,17 @@ class SaveDataTest {
         } catch (IOException | CsvValidationException e) {
             throw new RuntimeException(e);
         }
+
+        saveData.user.name = "Other Name";
+        saveData.saveFile();
+
+        try {
+            String[] line = csvReader.readNext();
+            assertEquals("Other Name", line[6]);
+        } catch (IOException | CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
+
         try {
             csvReader.close();
             fileReader.close();
@@ -77,6 +88,7 @@ class SaveDataTest {
     void writeTicket() {
         saveData.saveFile();
         saveData.saveFile();
+        saveData.user.name = "Other Name";
         saveData.saveFile();
         saveData.writeTicket();
         File ticketFile = new File(saveData.ticketFilePath);

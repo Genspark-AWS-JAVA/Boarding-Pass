@@ -6,7 +6,7 @@ import com.opencsv.exceptions.CsvException;
 
 import java.io.*;
 import java.text.NumberFormat;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Locale;
 
 /**
@@ -87,9 +87,13 @@ public class SaveData {
         CSVReader csvReader = new CSVReader(fileReader);
         try {
             fileWriter.write("Ticket:\n");
-            List<String[]> csvLines = csvReader.readAll();
-            String[] headers = csvLines.get(0);
-            String[] line = csvLines.get(csvLines.size() - 1);
+
+            String[] headers = csvReader.readNext();
+            Iterator<String[]> csvIterator = csvReader.iterator();
+            String[] line = csvIterator.next();
+            while(csvIterator.hasNext()) {
+                line = csvIterator.next();
+            }
 
             for (int i = 0; i < headers.length; i++) {
                 if (headers[i].equals("Price")) {
@@ -114,6 +118,7 @@ public class SaveData {
 
     /**
      * Delete a file if it exists
+     *
      * @param path path of the file to be deleted
      * @return true if file was deleted, false if it was not
      */
@@ -131,7 +136,7 @@ public class SaveData {
     void writeHeaders() {
         FileWriter fileWriter;
         try {
-            fileWriter = new FileWriter(this.dataFilePath, true);
+            fileWriter = new FileWriter(this.dataFilePath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
