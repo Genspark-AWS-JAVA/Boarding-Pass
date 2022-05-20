@@ -35,7 +35,7 @@ class SaveDataTest {
         boardingPass.destination = "123 Main St. Columbus, Ohio, USA";
         boardingPass.date = "2022-01-01";
         boardingPass.departureTime = "2022-01-02";
-        boardingPass.ETA = "2022-01-03";
+        boardingPass.eta = "2022-01-03";
 
         this.price = new Price(user);
 
