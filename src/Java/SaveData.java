@@ -53,7 +53,7 @@ public class SaveData {
         }
         CSVWriter csvWriter = new CSVWriter(fileWriter);
         String[] fields = {boardingPass.boardingPassNumber.toString(), boardingPass.date,
-                boardingPass.origin, boardingPass.destination, boardingPass.ETA,
+                boardingPass.origin, boardingPass.destination, boardingPass.eta,
                 boardingPass.departureTime, user.name, user.email,
                 user.phoneNumber, user.gender, user.age.toString(), Float.toString(this.price)};
         csvWriter.writeNext(fields);
@@ -91,7 +91,7 @@ public class SaveData {
             String[] headers = csvReader.readNext();
             Iterator<String[]> csvIterator = csvReader.iterator();
             String[] line = csvIterator.next();
-            while(csvIterator.hasNext()) {
+            while (csvIterator.hasNext()) {
                 line = csvIterator.next();
             }
 

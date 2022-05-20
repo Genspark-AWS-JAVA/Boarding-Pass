@@ -23,22 +23,21 @@ class UserTest {
         user.populateUserDataFromConsole(in);
         assertEquals("Michael", user.name);
         assertEquals("l@g.com", user.email);
+        assertEquals("33", user.age.toString());
 
-        input = String.format("M%nl@g.com%n(555) 555 0123%nmale%n33%n");
+        input = String.format("M%nl@g.com%n(555) 555 0123%nfemale%n33%n");
         inStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inStream);
         in = new Scanner(System.in);
         user.populateUserDataFromConsole(in);
-        assertEquals("M", user.name);
+        assertEquals("female", user.gender);
 
-        input = String.format("M%nl@g.com%n(555) 555 0123%nmale%n33%n");
+        input = String.format("M%nl@%ng@g.com%n(555) 555 0123%nmale%n33%n");
         inStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inStream);
         in = new Scanner(System.in);
         user.populateUserDataFromConsole(in);
-        assertEquals("M", user.name);
-
-
+        assertEquals("g@g.com", user.email);
 
         try {
             inStream.close();
