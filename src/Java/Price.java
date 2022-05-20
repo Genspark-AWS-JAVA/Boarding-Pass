@@ -1,7 +1,10 @@
 package Java;
 
-//declaring default values and methods
+/**
+ * Price of a ticket
+ */
 public class Price {
+//declaring default values and methods
     /**
      * age of the customer
      */
@@ -33,10 +36,10 @@ public class Price {
     public float getPrice() {
         float actualPrice = basePrice;
         if (gender.equals("female")) {
-            actualPrice = basePrice * (1 - 0.25f);
+            actualPrice = basePrice * 0.75f;
         }
         if (age <= 12) return actualPrice * 0.5f;
-        if (age >= 60) return actualPrice * (1 - 0.6f);
+        if (age >= 60) return actualPrice * 0.4f;
         return actualPrice;
     }
 }
