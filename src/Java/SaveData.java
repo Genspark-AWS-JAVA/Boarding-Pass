@@ -6,14 +6,26 @@ import com.opencsv.exceptions.CsvException;
 
 import java.io.*;
 import java.text.NumberFormat;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Locale;
 
+/**
+ * Save data into files based on user or boarding pass information.
+ */
 public class SaveData {
     User user;
     BoardingPass boardingPass;
+    /**
+     * Path of the CSV file to be saved containing user and boarding pass information.
+     */
     String dataFilePath;
+    /**
+     * Path of the ticket file to be saved containing human-readable ticket information.
+     */
     String ticketFilePath;
+    /**
+     * Price of the ticket.
+     */
     float price;
 
     public SaveData(Price price, User user, BoardingPass boardingPass) {
@@ -24,6 +36,10 @@ public class SaveData {
         this.price = price.getPrice();
     }
 
+    /**
+     * Generate a CSV file with user and boarding pass values then
+     * saving the file in dataFilePath
+     */
     public void saveFile() {
         File dataFile = new File(dataFilePath);
         if (!dataFile.exists()) {
@@ -49,6 +65,9 @@ public class SaveData {
         }
     }
 
+    /**
+     * Save a human-readable ticket with boarding pass and price information.
+     */
     public void writeTicket() {
         if (deleteFile(this.ticketFilePath)) {
             System.out.println("Deleted old ticket file.");
@@ -68,9 +87,13 @@ public class SaveData {
         CSVReader csvReader = new CSVReader(fileReader);
         try {
             fileWriter.write("Ticket:\n");
-            List<String[]> csvLines = csvReader.readAll();
-            String[] headers = csvLines.get(0);
-            String[] line = csvLines.get(csvLines.size() - 1);
+
+            String[] headers = csvReader.readNext();
+            Iterator<String[]> csvIterator = csvReader.iterator();
+            String[] line = csvIterator.next();
+            while(csvIterator.hasNext()) {
+                line = csvIterator.next();
+            }
 
             for (int i = 0; i < headers.length; i++) {
                 if (headers[i].equals("Price")) {
@@ -93,6 +116,12 @@ public class SaveData {
         }
     }
 
+    /**
+     * Delete a file if it exists
+     *
+     * @param path path of the file to be deleted
+     * @return true if file was deleted, false if it was not
+     */
     public boolean deleteFile(String path) {
         File file = new File(path);
         if (file.exists()) {
@@ -101,10 +130,13 @@ public class SaveData {
         return false;
     }
 
+    /**
+     * Save headers in the first line of the CSV. The headers describe the data to be saved.
+     */
     void writeHeaders() {
         FileWriter fileWriter;
         try {
-            fileWriter = new FileWriter(this.dataFilePath, true);
+            fileWriter = new FileWriter(this.dataFilePath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
