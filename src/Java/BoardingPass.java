@@ -1,9 +1,9 @@
 package Java;
-
+//importing needed methods
 import java.util.Random;
 import java.util.Scanner;
 import java.util.UUID;
-
+//default values and methods
 public class BoardingPass {
     UUID boardingPassNumber;
     String date;
@@ -11,7 +11,7 @@ public class BoardingPass {
     String destination;
     String ETA;
     String departureTime;
-
+//taking user input to fill fields for data
     public void populateDataFromConsole(Scanner in) {
         String minute = "0";
         String newMinute = "0";
@@ -21,8 +21,10 @@ public class BoardingPass {
         this.destination = in.nextLine();
         System.out.println("What date are you leaving (mm/dd/yyyy)");
         this.date = in.nextLine();
+//        Generates a unique ID
         this.boardingPassNumber = UUID.randomUUID();
         Random rand = new Random();
+//        Generating random times to be stored.
         int hour = rand.nextInt(12) + 1;
         int preMinute = rand.nextInt(60);
         if (preMinute < 10) {

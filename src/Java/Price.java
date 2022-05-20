@@ -1,15 +1,15 @@
 package Java;
-
+//declaring default values and methods
 public class Price {
     int age;
     String gender;
     float basePrice = 300f;
-
-    public Price(User user, BoardingPass boardingPass) {
+//setting up this user
+    public Price(User user) {
         this.age = user.age;
         this.gender = user.gender;
     }
-
+//calculations to get price
     public float getPrice() {
         float actualPrice = basePrice;
         if (gender.equals("female")) {

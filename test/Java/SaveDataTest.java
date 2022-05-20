@@ -37,7 +37,7 @@ class SaveDataTest {
         boardingPass.departureTime = "2022-01-02";
         boardingPass.ETA = "2022-01-03";
 
-        this.price = new Price(user, boardingPass);
+        this.price = new Price(user);
 
         saveData = new SaveData(price, user, boardingPass);
         saveData.dataFilePath = "test/_test_data.csv";

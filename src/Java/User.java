@@ -1,22 +1,22 @@
 package Java;
-
-import java.util.Objects;
+//importing needed packages
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+//declaring default methods and variables
 public class User {
     String name;
     String email;
     String phoneNumber;
     String gender;
     Integer age;
-
+//taking user input to fill fields
     public void populateUserDataFromConsole(Scanner in) {
         System.out.println("What is your name?");
         this.name = in.nextLine();
         Matcher matcher;
         String userEmail;
+//        Loop to ensure valid email
         do {
             System.out.println("enter your email:");
             userEmail = in.nextLine();
@@ -31,14 +31,13 @@ public class User {
       
         System.out.println("What is your phone number?");
         this.phoneNumber = in.nextLine();
+//        Loop to ensure either male or female is entered
         do {
             System.out.println("Male or Female.");
             this.gender = in.nextLine().toLowerCase().strip();
         } while (this.gender =="male" || this.gender == "female");
         System.out.println(this.gender);
-
         System.out.println("What is your age?");
-//        this.age = in.nextInt();
         this.age = Integer.parseInt(in.nextLine().strip());
     }
 }
