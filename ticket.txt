@@ -1,0 +1,13 @@
+Ticket:
+Boarding Pass Number:	214f85f3-d4b0-42e6-a52a-f911861e3ba9
+Date:	05/05/2022
+Origin:	l
+Destination:	l
+ETA:	5:36
+DepartureTime:	4:34
+Name:	s
+Email:	s@s.com
+PhoneNumber:	44
+Gender:	male
+Age:	33
+Price:	$300.00
