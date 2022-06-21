@@ -2,7 +2,6 @@ package Java;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
 
 import java.io.*;
 import java.text.NumberFormat;
@@ -105,14 +104,18 @@ public class SaveData {
                 }
             }
 
-        } catch (IOException | CsvException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-        try {
-            fileWriter.close();
-            fileReader.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } finally {
+            try {
+                fileWriter.close();
+                fileReader.close();
+                csvReader.close();
+            } catch (IOException e) {
+                System.out.println("Unable to close file. " + e.getMessage());
+                System.exit(1);
+            }
+
         }
     }
 
