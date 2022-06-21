@@ -34,6 +34,7 @@ public class BoardingPass {
 
     /**
      * taking user input to fill fields for data
+     *
      * @param in scanner to get user answer to questions
      */
     public void populateDataFromConsole(Scanner in) {
@@ -47,11 +48,11 @@ public class BoardingPass {
 
         System.out.println("What date are you leaving (mm/dd/yyyy)");
         this.date = in.nextLine().strip();
-         while(!this.date.matches("^(1[0-2]|0[1-9])/(3[01]|[12]\\d|0[1-9])/\\d{4}$")){
-             System.out.printf("Incorrect date format.%n" +
-                     " please enter the date of your departure in the following format (mm/dd/yyyy)");
-             this.date = in.nextLine().strip();
-         }
+        while (!this.date.matches("^(1[0-2]|0[1-9])/(3[01]|[12]\\d|0[1-9])/\\d{4}$")) {
+            System.out.printf("Incorrect date format.%n" +
+                    " please enter the date of your departure in the following format (mm/dd/yyyy)");
+            this.date = in.nextLine().strip();
+        }
 
 //        Generates a unique ID
         this.boardingPassNumber = UUID.randomUUID();

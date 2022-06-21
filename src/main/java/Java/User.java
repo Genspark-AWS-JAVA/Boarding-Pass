@@ -18,6 +18,7 @@ public class User {
 
     /**
      * Asks the user questions and populates user information into the class.
+     *
      * @param in Scanner for receiving user input
      */
     //taking user input to fill fields
@@ -44,10 +45,15 @@ public class User {
         do {
             System.out.println("Male or Female.");
             this.gender = in.nextLine().toLowerCase().strip();
-        } while (this.gender == "male" || this.gender == "female");
+            if (this.gender.startsWith("m")) {
+                this.gender = "male";
+            } else if (this.gender.startsWith("f")) {
+                this.gender = "female";
+            }
+        } while (!(this.gender.equals("male") || this.gender.equals("female")));
 
         System.out.println("What is your age?");
-        while (!in.hasNextInt()){
+        while (!in.hasNextInt()) {
             in.nextLine();  // throw away the bad input
             System.out.println("Please enter a valid number");
         }
